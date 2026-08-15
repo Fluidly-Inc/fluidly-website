@@ -1,0 +1,58 @@
+# Fluidly
+
+> Fluidly is a Process Intelligence Operating System. It is infrastructure, not an application: a shared execution and intelligence layer that sits beneath the CRMs, ERPs, EHRs, and internal tools an organization already runs, so that work itself, not just the data about work, becomes visible, explainable, executable, and continuously improvable.
+
+## What problem it solves
+
+Organizations do not have a software problem, they have a process intelligence problem. Work fragments across systems, people, policies, agents, documents, and decisions. Each existing tool (CRM, ERP, EHR, inbox, spreadsheet, Slack) sees only a piece of the work. No single system sees the whole thing move end to end. Fluidly is the shared model that does.
+
+## The core concept: 9 primitives
+
+Fluidly models all organizational work as 9 primitives:
+
+1. **Actor**: a human or AI agent that can act
+2. **WorkItem**: the unit of work and its lifecycle/state
+3. **Artifact**: evidence or documents attached to work
+4. **Event**: an append-only record of something that happened
+5. **ContextSnapshot**: the resolved state of relevant facts at decision time
+6. **Policy**: the rules that constrain what actions and transitions are allowed
+7. **Decision**: an explicit, evidence-linked choice with rationale and confidence
+8. **Action**: an execution step taken as a result of a decision
+9. **Outcome**: the recorded result, closing the learning loop
+
+Every step is auditable and append-only. This is deliberately close to how git tracks history, applied to organizational work instead of code: every Decision leaves a permanent trace of context, evidence, policy, alternatives, confidence, actor, and outcome in one immutable record.
+
+## Key differentiator
+
+Fluidly is not another application competing with your CRM or ERP. It is an operating system layer underneath the applications you already run. Applications become purpose-built views and behaviors layered over shared workflows, decisions, agents, and data, instead of each app reimplementing its own process logic in isolation.
+
+## The 5 layers
+
+1. **Workflow**: the execution contract: Work Items, states, transitions, actions, permissions
+2. **Digital Twin**: the semantic map connecting business entities and process dependencies across workflows
+3. **Decisions**: the explainability layer: full decision lineage, policy transparency, outcome-linked learning
+4. **Agents**: the action layer: AI or deterministic agents that observe, decide, or execute inside policy guardrails (human-in-the-loop)
+5. **Applications**: the experience layer: operator, executive, and customer-facing apps built on the shared layers below
+
+## Flagship use case: healthcare medication-refill operations
+
+Fluidly's first production use case is US outpatient medication-refill operations. A patient's SMS or voice request is classified by intent, becomes a WorkItem, is evaluated against a ContextSnapshot (medication history, latest labs, provider relationship, safety policy), produces an AI-assisted Decision with a confidence score and policy citation, triggers an Action (route to provider, send to pharmacy, request more info), and logs an Outcome. Every step is auditable end to end.
+
+Other healthcare workflows Fluidly targets: referral and prior authorization, chronic care gap closure, and HCC recapture / revenue integrity.
+
+## Who it's for
+
+- **Operations** teams who need to see and improve work in motion
+- **Executives** who need to connect process change to cost, risk, SLA, and capacity outcomes
+- **Technology/engineering** teams who want a reusable process foundation instead of reimplementing logic in every app
+- **Risk & Compliance** teams who need execution to be auditable by default
+- **Builders** composing role-specific products over shared intelligence
+- **Customers/patients** who experience faster, more coordinated service with fewer handoffs
+
+## Key pages
+- [Homepage](https://fluidly.ai/): full narrative covering the problem, the OS layers, live simulation, decision trace, healthcare flagship, interactive primitive builder, and demo request
+- [Healthcare](https://fluidly.ai/#healthcare): flagship use case and stakeholder value grid
+- [Contact](https://fluidly.ai/#contact): request a demo, or email contact@fluidly.ai
+
+## Contact
+contact@fluidly.ai
