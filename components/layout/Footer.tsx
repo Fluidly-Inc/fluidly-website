@@ -1,0 +1,44 @@
+import Image from "next/image";
+import Link from "next/link";
+import styles from "./chrome.module.css";
+
+export function Footer() {
+  return (
+    <footer className={styles.footer}>
+      <div className="wrap">
+        <div className={styles.footerTop}>
+          <Link href="/" className={styles.brand}>
+            <Image src="/fluidly-logo.png" alt="Fluidly" width={118} height={40} className={styles.logo} />
+          </Link>
+          <p>The Process Intelligence Operating System for work.</p>
+        </div>
+
+        <div className={styles.footerGrid}>
+          <div>
+            <strong>Platform</strong>
+            <a href="#os">The OS</a>
+            <a href="#simulate">Impact simulation</a>
+            <a href="#playground">Playground</a>
+          </div>
+          <div>
+            <strong>Solutions</strong>
+            <a href="#healthcare">Healthcare</a>
+            <a href="#stakeholders">Operations</a>
+            <a href="#os">Enterprise builders</a>
+          </div>
+          <div>
+            <strong>Company</strong>
+            <Link href="/blog">Blog</Link>
+            <a href="mailto:contact@fluidly.ai">Contact</a>
+            <Link href="/#contact">Design partners</Link>
+          </div>
+        </div>
+
+        <div className={styles.footerBottom}>
+          <span>© 2026 Fluidly, Inc.</span>
+          <span>Work becomes visible.</span>
+        </div>
+      </div>
+    </footer>
+  );
+}
