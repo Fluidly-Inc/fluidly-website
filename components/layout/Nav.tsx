@@ -10,8 +10,8 @@ const LINKS = [
   { href: "/#problem", label: "Why Fluidly" },
   { href: "/#os", label: "The OS" },
   { href: "/#healthcare", label: "Healthcare" },
-  { href: "/#playground", label: "Playground" },
   { href: "/blog", label: "Blog" },
+  { href: "/about", label: "About" },
 ];
 
 export function Nav() {

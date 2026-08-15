@@ -28,9 +28,9 @@ export function Footer() {
           </div>
           <div>
             <strong>Company</strong>
+            <Link href="/about">About</Link>
             <Link href="/blog">Blog</Link>
             <a href="mailto:contact@fluidly.ai">Contact</a>
-            <Link href="/#contact">Design partners</Link>
           </div>
         </div>
 
