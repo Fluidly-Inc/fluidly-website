@@ -26,7 +26,7 @@ const jetbrains = JetBrains_Mono({
   display: "swap",
 });
 
-const TITLE = "Fluidly / The Process Intelligence Operating System";
+const TITLE = "Fluidly | The Process Intelligence Operating System";
 const DESCRIPTION =
   "Fluidly makes organizational work visible, explainable, executable, and continuously improvable. A shared execution and intelligence layer beneath every application.";
 
