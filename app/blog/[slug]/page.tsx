@@ -70,17 +70,34 @@ export default async function PostPage({
   const { data: post } = await sanityFetch({ query: POST_QUERY, params: { slug } });
   if (!post) notFound();
 
+  const fluidlyOrg = {
+    "@type": "Organization",
+    name: "Fluidly",
+    "@id": "https://fluidly.ai/#organization",
+    url: "https://fluidly.ai",
+  };
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "BlogPosting",
     headline: post.title,
-    description: post.excerpt || undefined,
+    description: post.seoDescription || post.excerpt || undefined,
     datePublished: post.publishedAt,
-    author: post.author?.name ? { "@type": "Person", name: post.author.name } : undefined,
+    dateModified: post.publishedAt,
+    // Fluidly content is org-authored, never attributed to an individual.
+    author: fluidlyOrg,
+    publisher: fluidlyOrg,
     image: post.coverImage
       ? urlFor(post.coverImage).width(1200).height(630).fit("crop").url()
       : undefined,
-    publisher: { "@type": "Organization", name: "Fluidly", "@id": "https://fluidly.ai/#organization" },
+    articleSection: "Process Intelligence",
+    keywords: [
+      "process intelligence",
+      "operating system for work",
+      "workflow automation",
+      "decision intelligence",
+    ],
+    inLanguage: "en-US",
+    isPartOf: { "@type": "Blog", "@id": "https://fluidly.ai/blog#blog", name: "Fluidly Blog" },
     mainEntityOfPage: `https://fluidly.ai/blog/${slug}`,
   };
 

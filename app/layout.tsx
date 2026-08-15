@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { Bricolage_Grotesque, Manrope, JetBrains_Mono } from "next/font/google";
 import { ThemeProvider } from "next-themes";
 import { SanityLive } from "@/sanity/live";
+import { SmoothScroll } from "@/components/layout/SmoothScroll";
 import { FAQS } from "@/components/sections/FAQ";
 import "./globals.css";
 
@@ -126,6 +127,7 @@ export default function RootLayout({
         />
         <ThemeProvider attribute="data-theme" defaultTheme="dark" enableSystem>
           <div className="grain" aria-hidden />
+          <SmoothScroll />
           {children}
         </ThemeProvider>
         <SanityLive />

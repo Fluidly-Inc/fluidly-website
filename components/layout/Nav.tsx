@@ -6,6 +6,34 @@ import { useEffect, useState } from "react";
 import { ThemeToggle } from "./ThemeToggle";
 import styles from "./chrome.module.css";
 
+// Render hash links as plain <a> so the global SmoothScroll listener fully
+// controls the click (Next <Link> would set the #hash itself). Real routes
+// use <Link>.
+function NavItem({
+  href,
+  className,
+  onClick,
+  children,
+}: {
+  href: string;
+  className?: string;
+  onClick?: () => void;
+  children: React.ReactNode;
+}) {
+  if (href.includes("#")) {
+    return (
+      <a href={href} className={className} onClick={onClick}>
+        {children}
+      </a>
+    );
+  }
+  return (
+    <Link href={href} className={className} onClick={onClick}>
+      {children}
+    </Link>
+  );
+}
+
 const LINKS = [
   { href: "/#problem", label: "Why Fluidly" },
   { href: "/#os", label: "The OS" },
@@ -45,17 +73,17 @@ export function Nav() {
 
         <nav className={styles.links} aria-label="Primary">
           {LINKS.map((l) => (
-            <Link key={l.href} href={l.href}>
+            <NavItem key={l.href} href={l.href}>
               {l.label}
-            </Link>
+            </NavItem>
           ))}
         </nav>
 
         <div className={styles.actions}>
           <ThemeToggle />
-          <Link className={styles.demoBtn} href="/#contact">
+          <NavItem className={styles.demoBtn} href="/#contact">
             Request a demo
-          </Link>
+          </NavItem>
           <button
             type="button"
             className={styles.burger}
@@ -72,13 +100,13 @@ export function Nav() {
 
       <div className={styles.mobileNav} data-open={open} aria-hidden={!open}>
         {LINKS.map((l) => (
-          <Link key={l.href} href={l.href} onClick={() => setOpen(false)}>
+          <NavItem key={l.href} href={l.href} onClick={() => setOpen(false)}>
             {l.label}
-          </Link>
+          </NavItem>
         ))}
-        <Link href="/#contact" onClick={() => setOpen(false)} className={styles.mobileDemo}>
+        <NavItem href="/#contact" onClick={() => setOpen(false)} className={styles.mobileDemo}>
           Request a demo
-        </Link>
+        </NavItem>
       </div>
     </>
   );

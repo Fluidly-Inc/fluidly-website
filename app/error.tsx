@@ -1,8 +1,10 @@
 "use client";
 
 import { useEffect } from "react";
+import { ErrorShell } from "@/components/layout/ErrorShell";
+import styles from "@/components/layout/error-shell.module.css";
 
-export default function GlobalError({
+export default function AppError({
   error,
   reset,
 }: {
@@ -10,41 +12,19 @@ export default function GlobalError({
   reset: () => void;
 }) {
   useEffect(() => {
-    // client-side render error; surface it in the browser console with context
     console.error("[fluidly] render error", error);
   }, [error]);
 
   return (
-    <main
-      style={{
-        minHeight: "70vh",
-        display: "grid",
-        placeItems: "center",
-        textAlign: "center",
-        padding: "40px 20px",
-      }}
-    >
-      <div style={{ maxWidth: 460 }}>
-        <h1 style={{ fontSize: "1.8rem", marginBottom: 12 }}>Something went wrong.</h1>
-        <p style={{ color: "var(--muted)", marginBottom: 24 }}>
-          An unexpected error occurred. Try again, or head back home.
-        </p>
-        <button
-          type="button"
-          onClick={reset}
-          style={{
-            minHeight: 46,
-            padding: "0 22px",
-            borderRadius: 12,
-            border: "1px solid var(--line)",
-            background: "var(--accent, #17c4b1)",
-            color: "#fff",
-            fontWeight: 600,
-          }}
-        >
+    <ErrorShell
+      code="500"
+      title="Something broke on our end."
+      message="An unexpected error occurred. Try again, and if it keeps happening, reach us at contact@fluidly.ai."
+      action={
+        <button type="button" onClick={reset} className={styles.retryBtn}>
           Try again
         </button>
-      </div>
-    </main>
+      }
+    />
   );
 }
