@@ -1,3 +1,7 @@
+/* eslint-disable @next/next/no-html-link-for-pages --
+   In-page "/#section" anchors are intentionally plain <a> so the global
+   SmoothScroll listener controls the scroll and keeps the hash out of the URL.
+   Next <Link> would re-add the hash. Real routes below still use <Link>. */
 import Image from "next/image";
 import Link from "next/link";
 import styles from "./chrome.module.css";
@@ -16,15 +20,15 @@ export function Footer() {
         <div className={styles.footerGrid}>
           <div>
             <strong>Platform</strong>
-            <a href="#os">The OS</a>
-            <a href="#simulate">Impact simulation</a>
-            <a href="#playground">Playground</a>
+            <a href="/#os">The OS</a>
+            <a href="/#problem">The idea</a>
+            <a href="/#faq">FAQ</a>
           </div>
           <div>
             <strong>Solutions</strong>
-            <a href="#healthcare">Healthcare</a>
-            <a href="#stakeholders">Operations</a>
-            <a href="#os">Enterprise builders</a>
+            <a href="/#healthcare">Healthcare</a>
+            <a href="/#os">Enterprise builders</a>
+            <Link href="/blog">Blog</Link>
           </div>
           <div>
             <strong>Company</strong>

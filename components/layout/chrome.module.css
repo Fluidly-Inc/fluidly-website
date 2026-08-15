@@ -1,25 +1,23 @@
-/* ---------------- Nav ---------------- */
+/* ---------------- Nav: minimal dark bar ---------------- */
 .nav {
   position: fixed;
-  top: 14px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: min(1280px, calc(100% - 24px));
-  height: 66px;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 60px;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0 14px 0 20px;
-  border: 1px solid var(--panel-line);
-  border-radius: 18px;
-  background: color-mix(in srgb, var(--bg) 72%, transparent);
-  backdrop-filter: blur(20px);
+  padding: 0 clamp(16px, 4vw, 40px);
+  background: color-mix(in srgb, var(--bg) 82%, transparent);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid transparent;
   z-index: 100;
-  transition: box-shadow 0.3s ease, background 0.3s ease, border-color 0.3s ease;
+  transition: border-color 0.25s ease, background 0.25s ease;
 }
 .nav[data-scrolled="true"] {
-  box-shadow: var(--shadow-lg);
-  background: color-mix(in srgb, var(--bg) 84%, transparent);
+  border-bottom-color: var(--line);
+  background: color-mix(in srgb, var(--bg) 92%, transparent);
 }
 
 .brand {
@@ -28,18 +26,18 @@
 }
 .logo {
   width: auto;
-  height: 40px;
+  height: 30px;
   object-fit: contain;
 }
 
 .links {
   display: flex;
-  gap: 26px;
+  gap: 28px;
   font-size: 0.9rem;
   color: var(--muted);
 }
 .links a {
-  transition: color 0.2s ease;
+  transition: color 0.18s ease;
 }
 .links a:hover {
   color: var(--text);
@@ -48,35 +46,34 @@
 .actions {
   display: flex;
   align-items: center;
-  gap: 14px;
+  gap: 16px;
 }
 
 .demoBtn {
   display: inline-flex;
   align-items: center;
-  height: 40px;
+  height: 36px;
   padding: 0 16px;
-  border-radius: 11px;
-  background: linear-gradient(135deg, var(--teal), var(--teal-deep));
-  color: #fff;
+  border-radius: 8px;
+  background: var(--accent);
+  color: #001015;
   font-size: 0.85rem;
   font-weight: 600;
-  box-shadow: var(--shadow-glow);
-  transition: transform 0.2s ease;
+  transition: background 0.18s ease;
 }
 .demoBtn:hover {
-  transform: translateY(-1px);
+  background: #7cebff;
 }
 
 .burger {
   display: none;
-  width: 40px;
-  height: 40px;
+  width: 38px;
+  height: 38px;
   border: 0;
   background: transparent;
   flex-direction: column;
   justify-content: center;
-  gap: 6px;
+  gap: 5px;
 }
 .burger span {
   display: block;
@@ -84,72 +81,30 @@
   height: 1.5px;
   margin: 0 auto;
   background: var(--text);
-  transition: transform 0.25s ease, opacity 0.25s ease;
+  transition: transform 0.22s ease, opacity 0.22s ease;
 }
 .burger[data-open="true"] span:first-child {
-  transform: translateY(3.75px) rotate(45deg);
+  transform: translateY(3.25px) rotate(45deg);
 }
 .burger[data-open="true"] span:last-child {
-  transform: translateY(-3.75px) rotate(-45deg);
-}
-
-/* ---------------- Theme toggle ---------------- */
-.themeToggle {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  border: 0;
-  background: transparent;
-  color: var(--muted);
-  font-size: 0.8rem;
-}
-.toggleTrack {
-  position: relative;
-  width: 42px;
-  height: 22px;
-  border-radius: 999px;
-  border: 1px solid var(--line);
-  background: var(--card);
-  transition: background 0.3s ease;
-}
-.toggleThumb {
-  position: absolute;
-  top: 2px;
-  left: 2px;
-  width: 16px;
-  height: 16px;
-  border-radius: 50%;
-  background: var(--accent);
-  transition: transform 0.3s cubic-bezier(0.2, 0.7, 0.2, 1);
-}
-.toggleTrack[data-dark="false"] .toggleThumb {
-  transform: translateX(20px);
-}
-.toggleLabel {
-  min-width: 34px;
-  text-align: left;
-  font-family: var(--font-mono);
-  letter-spacing: 0.04em;
+  transform: translateY(-3.25px) rotate(-45deg);
 }
 
 /* ---------------- Mobile nav ---------------- */
 .mobileNav {
   position: fixed;
-  inset: 84px 12px auto 12px;
+  inset: 60px 0 auto 0;
   z-index: 99;
   display: flex;
   flex-direction: column;
-  gap: 4px;
-  padding: 14px;
-  border: 1px solid var(--panel-line);
-  border-radius: 18px;
-  background: color-mix(in srgb, var(--bg) 94%, transparent);
-  backdrop-filter: blur(20px);
-  box-shadow: var(--shadow-lg);
+  gap: 2px;
+  padding: 12px clamp(16px, 4vw, 40px) 20px;
+  background: var(--bg);
+  border-bottom: 1px solid var(--line);
   opacity: 0;
-  transform: translateY(-12px) scale(0.98);
+  transform: translateY(-8px);
   pointer-events: none;
-  transition: opacity 0.25s ease, transform 0.25s ease;
+  transition: opacity 0.2s ease, transform 0.2s ease;
 }
 .mobileNav[data-open="true"] {
   opacity: 1;
@@ -157,23 +112,19 @@
   pointer-events: auto;
 }
 .mobileNav a {
-  padding: 14px 12px;
-  border-radius: 12px;
+  padding: 14px 4px;
   color: var(--text);
   font-size: 1rem;
-}
-.mobileNav a:hover {
-  background: var(--card);
+  border-bottom: 1px solid var(--line);
 }
 .mobileDemo {
-  margin-top: 6px;
-  background: linear-gradient(135deg, var(--teal), var(--teal-deep));
-  color: #fff !important;
+  margin-top: 10px;
+  border-bottom: 0 !important;
+  color: var(--accent) !important;
   font-weight: 600;
-  text-align: center;
 }
 
-@media (max-width: 860px) {
+@media (max-width: 800px) {
   .links,
   .demoBtn {
     display: none;
@@ -182,58 +133,47 @@
     display: flex;
   }
 }
-@media (max-width: 400px) {
-  .nav {
-    height: 60px;
-    padding: 0 10px 0 14px;
-  }
-  .logo {
-    height: 34px;
-  }
-  .toggleLabel {
-    display: none;
-  }
-  .actions {
-    gap: 8px;
-  }
-}
 
-/* ---------------- Footer ---------------- */
+/* ---------------- Footer: thin, minimal ---------------- */
 .footer {
   border-top: 1px solid var(--line);
-  padding: 70px 0 40px;
-  background: var(--bg-soft);
+  padding: 56px 0 40px;
+  background: var(--bg);
 }
 .footerTop {
   display: flex;
   flex-direction: column;
-  gap: 14px;
+  gap: 12px;
   max-width: 340px;
-  margin-bottom: 48px;
+  margin-bottom: 44px;
 }
 .footerTop p {
   color: var(--muted);
   margin: 0;
+  font-size: 0.9rem;
 }
 .footerGrid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 24px;
-  max-width: 640px;
-  margin-bottom: 48px;
+  max-width: 620px;
+  margin-bottom: 44px;
 }
 .footerGrid strong {
   display: block;
-  font-family: var(--font-display);
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--faint);
   margin-bottom: 14px;
-  color: var(--text-strong);
 }
 .footerGrid a {
   display: block;
   padding: 5px 0;
   color: var(--muted);
   font-size: 0.9rem;
-  transition: color 0.2s ease;
+  transition: color 0.18s ease;
 }
 .footerGrid a:hover {
   color: var(--accent);
@@ -241,11 +181,14 @@
 .footerBottom {
   display: flex;
   justify-content: space-between;
-  padding-top: 24px;
+  padding-top: 22px;
   border-top: 1px solid var(--line);
   color: var(--faint);
   font-family: var(--font-mono);
-  font-size: 0.78rem;
+  font-size: 0.76rem;
+}
+.logo {
+  filter: none;
 }
 
 @media (max-width: 620px) {

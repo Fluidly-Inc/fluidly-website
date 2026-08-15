@@ -1,52 +1,36 @@
-"use client";
-
-import { motion } from "motion/react";
-import { ParticleField } from "../fx/ParticleField";
-import { Button } from "../ui";
+import { HeroBackdrop } from "../fx/HeroBackdrop";
+import { Button, Reveal } from "../ui";
 import styles from "./sections.module.css";
-
-const rise = {
-  hidden: { opacity: 0, y: 30 },
-  show: (i: number) => ({
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.8, delay: 0.15 + i * 0.12, ease: [0.2, 0.7, 0.2, 1] as const },
-  }),
-};
 
 export function Hero() {
   return (
     <section className={styles.hero} id="top">
-      <ParticleField className={styles.heroCanvas} />
-      <div className={styles.heroGlow} aria-hidden />
-      <div className={styles.heroVignette} aria-hidden />
-
-      <div className={styles.heroInner}>
-        <motion.div custom={0} variants={rise} initial="hidden" animate="show" className="eyebrow">
-          A new computing layer for work
-        </motion.div>
-
-        <motion.h1 custom={1} variants={rise} initial="hidden" animate="show" className={styles.heroTitle}>
-          Every organization runs on work.
-          <span className="gradient-text">Yet no one can actually see it.</span>
-        </motion.h1>
-
-        <motion.p custom={2} variants={rise} initial="hidden" animate="show" className={styles.heroCopy}>
-          CRMs store customers. ERPs store transactions. EHRs store records. None of them
-          understand how work actually moves. Fluidly does.
-        </motion.p>
-
-        <motion.div custom={3} variants={rise} initial="hidden" animate="show" className={styles.heroActions}>
-          <Button href="#problem">Experience the idea</Button>
-          <Button href="#playground" variant="ghost">
-            Build a process
-          </Button>
-        </motion.div>
-      </div>
-
-      <div className={styles.scrollCue} aria-hidden>
-        <span className={styles.scrollDot} />
-        Scroll to reveal the system
+      <HeroBackdrop />
+      <div className={`wrap ${styles.heroInner}`}>
+        <Reveal>
+          <div className="eyebrow">Process Intelligence Operating System</div>
+        </Reveal>
+        <Reveal delay={0.06}>
+          <h1 className={`h-xl ${styles.heroTitle}`}>
+            Every organization runs on work.
+            <br />
+            <span className="accent">No one can see it.</span>
+          </h1>
+        </Reveal>
+        <Reveal delay={0.12}>
+          <p className={`lede ${styles.heroCopy}`}>
+            Your tools store records, not the work moving between them. Fluidly is the shared layer
+            beneath your applications that makes work visible, explainable, and executable.
+          </p>
+        </Reveal>
+        <Reveal delay={0.18}>
+          <div className={styles.heroActions}>
+            <Button href="/#contact">Request a demo</Button>
+            <Button href="/blog" variant="ghost">
+              Read the blog
+            </Button>
+          </div>
+        </Reveal>
       </div>
     </section>
   );

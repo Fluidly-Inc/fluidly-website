@@ -1,26 +1,19 @@
 import type { Metadata, Viewport } from "next";
-import { Bricolage_Grotesque, Manrope, JetBrains_Mono } from "next/font/google";
-import { ThemeProvider } from "next-themes";
+import { Geist, Geist_Mono } from "next/font/google";
 import { SanityLive } from "@/sanity/live";
 import { SmoothScroll } from "@/components/layout/SmoothScroll";
 import { FAQS } from "@/components/sections/FAQ";
 import "./globals.css";
 
-const bricolage = Bricolage_Grotesque({
-  subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
-  variable: "--font-bricolage",
-  display: "swap",
-});
-
-const manrope = Manrope({
+// Technical, neutral sans + mono to match the Harness aesthetic.
+const geist = Geist({
   subsets: ["latin"],
   weight: ["400", "500", "600", "700"],
   variable: "--font-sans",
   display: "swap",
 });
 
-const jetbrains = JetBrains_Mono({
+const geistMono = Geist_Mono({
   subsets: ["latin"],
   weight: ["400", "500"],
   variable: "--font-mono",
@@ -103,10 +96,8 @@ const JSON_LD = {
 };
 
 export const viewport: Viewport = {
-  themeColor: [
-    { media: "(prefers-color-scheme: dark)", color: "#050f16" },
-    { media: "(prefers-color-scheme: light)", color: "#f6f7f4" },
-  ],
+  themeColor: "#0a0a0a",
+  colorScheme: "dark",
 };
 
 export default function RootLayout({
@@ -115,21 +106,14 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html
-      lang="en"
-      suppressHydrationWarning
-      className={`${bricolage.variable} ${manrope.variable} ${jetbrains.variable}`}
-    >
+    <html lang="en" className={`${geist.variable} ${geistMono.variable}`}>
       <body>
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(JSON_LD) }}
         />
-        <ThemeProvider attribute="data-theme" defaultTheme="dark" enableSystem>
-          <div className="grain" aria-hidden />
-          <SmoothScroll />
-          {children}
-        </ThemeProvider>
+        <SmoothScroll />
+        {children}
         <SanityLive />
       </body>
     </html>

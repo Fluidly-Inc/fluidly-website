@@ -3,7 +3,6 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import { ThemeToggle } from "./ThemeToggle";
 import styles from "./chrome.module.css";
 
 // Render hash links as plain <a> so the global SmoothScroll listener fully
@@ -80,7 +79,6 @@ export function Nav() {
         </nav>
 
         <div className={styles.actions}>
-          <ThemeToggle />
           <NavItem className={styles.demoBtn} href="/#contact">
             Request a demo
           </NavItem>

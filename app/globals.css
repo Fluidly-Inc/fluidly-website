@@ -1,95 +1,63 @@
 /* ============================================================
-   Fluidly design tokens. Dark is the cinematic default;
-   light is the editorial counterpart under [data-theme=light].
+   Fluidly design tokens. Dark-only, near-monochrome technical
+   aesthetic modeled on the DeepSeek Harness page: near-black
+   background, white/gray type hierarchy, a single cyan accent,
+   thin dividers, monospace for code.
    ============================================================ */
 
-:root,
-[data-theme="dark"] {
+:root {
   color-scheme: dark;
 
-  --bg: #050f16;
-  --bg-soft: #081722;
-  --panel: #0b1e2a;
-  --panel-2: #102b38;
-  --panel-line: rgba(140, 210, 216, 0.14);
-  --line: rgba(173, 220, 225, 0.15);
+  --bg: #0a0a0a;
+  --bg-soft: #101010;
+  --panel: #141414;
+  --panel-2: #1a1a1a;
+  --line: rgba(255, 255, 255, 0.09);
+  --line-strong: rgba(255, 255, 255, 0.16);
 
-  --text: #f2fbfc;
+  --text: #f5f5f5;
   --text-strong: #ffffff;
-  --muted: #93a9b2;
-  --faint: #61767f;
+  --muted: #b0b0b0;
+  --faint: #7a7a7a;
 
-  --teal: #17c4b1;
-  --teal-light: #5eead4;
-  --teal-deep: #0c7d72;
-  --cyan: #38bdf8;
-  --violet: #8b7bf0;
-  --danger: #fb7185;
-  --warning: #fbbf24;
-  --healthy: #34d3a6;
+  --accent: #38e1ff;
+  --accent-dim: #2bb8d4;
+  --accent-soft: rgba(56, 225, 255, 0.1);
 
-  --accent: var(--teal);
-  --accent-soft: rgba(23, 196, 177, 0.14);
-  --grid-line: rgba(120, 200, 205, 0.05);
+  --radius-lg: 16px;
+  --radius-md: 10px;
+  --radius-sm: 7px;
+  --wrap: min(1080px, calc(100% - 44px));
+  --wrap-wide: min(1280px, calc(100% - 44px));
 
-  --hero-glow: radial-gradient(60% 55% at 50% 30%, rgba(23, 196, 177, 0.18), transparent 70%);
-  --card: rgba(255, 255, 255, 0.024);
-  --card-hover: rgba(255, 255, 255, 0.05);
-  --shadow-lg: 0 30px 80px rgba(0, 0, 0, 0.5);
-  --shadow-glow: 0 20px 60px rgba(23, 196, 177, 0.18);
-}
-
-[data-theme="light"] {
-  color-scheme: light;
-
-  --bg: #f6f7f4;
-  --bg-soft: #eef1ec;
-  --panel: #ffffff;
-  --panel-2: #f3f5f1;
-  --panel-line: rgba(12, 40, 44, 0.1);
-  --line: rgba(9, 30, 34, 0.12);
-
-  --text: #0d1c22;
-  --text-strong: #04121a;
-  --muted: #4b5f66;
-  --faint: #7d9198;
-
-  --teal: #0c9a8c;
-  --teal-light: #0c9a8c;
-  --teal-deep: #0a6a61;
-  --cyan: #0284c7;
-  --violet: #6d5ce0;
-  --danger: #e11d48;
-  --warning: #d97706;
-  --healthy: #059669;
-
-  --accent: var(--teal);
-  --accent-soft: rgba(12, 154, 140, 0.12);
-  --grid-line: rgba(9, 40, 44, 0.05);
-
-  --hero-glow: radial-gradient(60% 55% at 50% 28%, rgba(12, 154, 140, 0.12), transparent 70%);
-  --card: rgba(9, 30, 34, 0.025);
-  --card-hover: rgba(9, 30, 34, 0.05);
-  --shadow-lg: 0 26px 70px rgba(15, 40, 44, 0.12);
-  --shadow-glow: 0 20px 55px rgba(12, 154, 140, 0.14);
-}
-
-:root {
-  --radius-xl: 30px;
-  --radius-lg: 22px;
-  --radius-md: 14px;
-  --radius-sm: 10px;
-  --wrap: min(1200px, calc(100% - 44px));
-  --font-display: var(--font-bricolage), "Manrope", system-ui, sans-serif;
+  --font-display: var(--font-sans), system-ui, sans-serif;
   --font-body: var(--font-sans), system-ui, sans-serif;
   --font-mono: var(--font-mono), ui-monospace, "SF Mono", monospace;
+
+  /* back-compat aliases so pages not yet fully rebuilt (blog, about, error,
+     healthcare) map old token names onto the dark palette. */
+  --radius-xl: 20px;
+  --card: var(--panel);
+  --card-hover: var(--panel-2);
+  --panel-line: var(--line);
+  --shadow-lg: 0 20px 60px rgba(0, 0, 0, 0.6);
+  --shadow-glow: 0 0 0 1px var(--accent-soft);
+  --hero-glow: radial-gradient(60% 55% at 50% 30%, var(--accent-soft), transparent 70%);
+  --grid-line: var(--line);
+  --teal: var(--accent);
+  --teal-light: var(--accent);
+  --teal-deep: var(--accent-dim);
+  --cyan: var(--accent);
+  --healthy: #46d39a;
+  --warning: #e0b341;
+  --danger: #ff6b81;
+  --violet: #8b7bf0;
 }
 
 * {
   box-sizing: border-box;
 }
 
-/* nothing overflows its container horizontally */
 img,
 svg,
 canvas,
@@ -112,7 +80,6 @@ body {
   line-height: 1.6;
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
-  transition: background 0.5s ease, color 0.5s ease;
 }
 
 body.menu-open {
@@ -141,8 +108,8 @@ h3,
 h4 {
   font-family: var(--font-display);
   font-weight: 600;
-  letter-spacing: -0.035em;
-  margin: 0 0 0.6em;
+  letter-spacing: -0.03em;
+  margin: 0 0 0.5em;
   color: var(--text-strong);
 }
 
@@ -152,7 +119,7 @@ p {
 
 ::selection {
   background: var(--accent);
-  color: var(--bg);
+  color: #001015;
 }
 
 /* ---------- shared layout primitives ---------- */
@@ -161,70 +128,85 @@ p {
   width: var(--wrap);
   margin: 0 auto;
 }
+.wrap-wide {
+  width: var(--wrap-wide);
+  margin: 0 auto;
+}
 
+/* full-width section with a thin top divider, Harness rhythm */
 .section {
   position: relative;
-  padding: clamp(72px, 12vw, 150px) 0;
-  overflow: clip;
+  padding: clamp(72px, 10vw, 130px) 0;
+}
+.section + .section {
+  border-top: 1px solid var(--line);
 }
 
 .eyebrow {
   display: inline-flex;
   align-items: center;
-  gap: 10px;
+  gap: 9px;
   font-family: var(--font-mono);
-  font-size: 0.7rem;
+  font-size: 0.72rem;
   font-weight: 500;
-  letter-spacing: 0.22em;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--accent);
-  margin-bottom: 24px;
+  margin-bottom: 22px;
 }
 .eyebrow::before {
   content: "";
-  width: 26px;
+  width: 22px;
   height: 1px;
   background: currentColor;
 }
 
 .h-xl {
-  font-size: clamp(2.6rem, 5.6vw, 5.4rem);
-  line-height: 0.98;
+  font-size: clamp(2.6rem, 6vw, 5rem);
+  line-height: 1.02;
+  letter-spacing: -0.04em;
 }
 .h-lg {
-  font-size: clamp(2rem, 4vw, 3.6rem);
-  line-height: 1.02;
+  font-size: clamp(1.9rem, 3.6vw, 3rem);
+  line-height: 1.05;
+  letter-spacing: -0.035em;
 }
 
 .lede {
   max-width: 620px;
   color: var(--muted);
-  font-size: clamp(1.02rem, 1.4vw, 1.18rem);
+  font-size: clamp(1rem, 1.3vw, 1.15rem);
   line-height: 1.7;
 }
 
-.gradient-text {
-  background: linear-gradient(100deg, var(--teal-light), var(--teal) 45%, var(--cyan));
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-}
-
-/* grain + grid atmosphere */
-.grain {
-  position: fixed;
-  inset: 0;
-  z-index: 300;
-  pointer-events: none;
-  opacity: 0.04;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+.accent {
+  color: var(--accent);
 }
 
 .card {
-  background: var(--card);
+  background: var(--panel);
   border: 1px solid var(--line);
   border-radius: var(--radius-lg);
-  transition: background 0.3s ease, border-color 0.3s ease, transform 0.3s ease;
+  transition: border-color 0.25s ease, background 0.25s ease;
+}
+
+/* monospace code / log block, a signature of the Harness look */
+.codeblock {
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  line-height: 1.7;
+  background: #000;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-md);
+  padding: 20px 22px;
+  overflow-x: auto;
+  color: var(--muted);
+}
+.codeblock .tok-accent {
+  color: var(--accent);
+}
+.codeblock .tok-dim {
+  color: var(--faint);
 }
 
 @media (prefers-reduced-motion: reduce) {

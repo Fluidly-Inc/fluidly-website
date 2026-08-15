@@ -1,0 +1,49 @@
+.backdrop {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+/* faint drifting grid */
+.grid {
+  position: absolute;
+  inset: -50% -50% 0 -50%;
+  background-image: linear-gradient(var(--line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--line) 1px, transparent 1px);
+  background-size: 46px 46px;
+  mask-image: radial-gradient(circle at 50% 30%, black, transparent 65%);
+  -webkit-mask-image: radial-gradient(circle at 50% 30%, black, transparent 65%);
+  opacity: 0.5;
+  animation: drift 30s linear infinite;
+}
+@keyframes drift {
+  to {
+    transform: translateY(46px);
+  }
+}
+
+/* soft cyan glow behind the headline */
+.glow {
+  position: absolute;
+  top: -10%;
+  left: 50%;
+  width: 70vw;
+  height: 60vh;
+  transform: translateX(-50%);
+  background: radial-gradient(circle, var(--accent-soft), transparent 62%);
+  filter: blur(30px);
+}
+
+/* fade the grid into the page background at the bottom */
+.fade {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, transparent 40%, var(--bg) 95%);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .grid {
+    animation: none;
+  }
+}
